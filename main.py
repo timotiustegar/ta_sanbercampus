@@ -22,7 +22,6 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.model_selection import GridSearchCV
 from sklearn.metrics import classification_report, confusion_matrix, accuracy_score
-nlp = spacy.load("en_core_web_sm")
 
 # secrets
 dataset_path = st.secrets.path_configuration.dataset_path
