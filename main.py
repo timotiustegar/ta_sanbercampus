@@ -133,16 +133,15 @@ def train_model(df, lang, label, text):
     # Pembagian data menjadi data training dan testing
     X_train, X_test, y_train, y_test = train_test_split(vectorized, temp_cleaned[label], test_size=0.2, random_state=18)
     # SVC
-    param_grid = {'alpha': [0.00001, 0.0001, 0.001, 0.1, 1, 10, 100,1000]}
+    param_grid = {'C': [0.1, 1, 10], 'gamma': ['scale', 'auto'], 'kernel': ['linear', 'poly', 'rbf', 'sigmoid']}
     # Buat grid search dengan parameter
-    grid_nb = GridSearchCV(MultinomialNB(), param_grid, cv=5)
+    grid_svc = GridSearchCV(SVC(), param_grid, cv=2)
     # Fit grid ke model
-    grid_nb.fit(X_train,y_train)
-    print(grid_nb.best_params_)
+    grid_svc.fit(X_train,y_train)
     # Predict dengan hasil grid search
-    grid_nb_predict = grid_nb.predict(X_test)
+    grid_svc_predict = grid_svc.predict(X_test)
     # Cetak akurasi
-    return accuracy_score(y_test, grid_nb_predict)
+    return accuracy_score(y_test, grid_svc_predict)
 
 # Start thread untuk menjalankan scheduler
 thread = threading.Thread(target=jadwal_hapus_file)
