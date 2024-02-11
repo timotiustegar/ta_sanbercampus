@@ -24,7 +24,7 @@ from sklearn.metrics import classification_report, confusion_matrix, accuracy_sc
 import pickle
 import nltk
 
-# nltk.download("popular")
+nltk.download("popular")
 # secrets
 dataset_path = st.secrets.path_configuration.dataset_path
 model_path = st.secrets.path_configuration.model_path
